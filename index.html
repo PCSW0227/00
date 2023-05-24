@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+    <title> O-ra : Jeju </title>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Pretendard', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: black;
+            background: url('https://i.ibb.co/852vFS5/jieun-lim-o-Ms-XE4k-IKC8-unsplash.jpg') no-repeat center center fixed; 
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+
+        .container {
+            max-width: 840px;
+            margin: 0 auto;
+            padding: 0;
+            text-align: center;
+        }
+
+        .project-title {
+            font-family: 'Nanum Brush Script', cursive;
+            font-size: 72px;
+            margin: 20px 0;
+            color: white;
+            text-shadow: 2px 2px 4px #000000;
+        }
+
+        .text-container, .form-container {
+            width: 80%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .input-field {
+            font-size: 16px;
+            padding: 10px;
+            box-sizing: border-box;
+            width: 70%;
+        }
+
+        .submit-btn {
+            font-size: 16px;
+            padding: 10px;
+            margin-left: 10px;
+            box-sizing: border-box;
+            width: 28%;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="project-title"> O-ra : Jeju </div>
+        <div class="text-container">
+            <p>Experience the serene beauty of Jeju Island, a natural wonder located in South Korea known for its lush greenery and volcanic landscapes.</p>
+        </div>
+        <form class="form-container">
+            <input type="text" class="input-field" placeholder="원하는 제주 여행 스타일을 입력해보세요(ex: 힙한, 조용한, 바다, 데이트)">
+            <button type="submit" class="submit-btn">Find Personalized Trip</button>
+        </form>
+    </div>
+    
+    <py-env>
+        openai
+        pandas
+    </py-env>
+    
+    <py-script> 
+        df = pandas.read_csv("https://github.com/BoraaHan/o-rajeju/blob/main/%E1%84%8B%E1%85%B3%E1%86%B7%E1%84%89%E1%85%B5%E1%86%A8%E1%84%8C%E1%85%A5%E1%86%B7_20.csv", sep=",")
+
+        keyword = str(input())
+
+        for i in range(len(df)):
+            if keyword in str(df['해시태그'][i]):
+                print(df['명칭'][i], str(df['해시태그'][i]))
+    </py-script>
+</body>
+</html>
